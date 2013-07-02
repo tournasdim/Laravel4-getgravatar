@@ -18,7 +18,7 @@ It is assumed that you already have a working Laravel 4 project . Basic knowledg
 		}	
 	}
 ``` 
-2. Run a `composer install` command . 
+2. Run a `composer update` command . 
 3. Add the Gravatar Service Provider to your config file `app/config/app.php`:
 ```javascript
 'providers' => array(
@@ -31,7 +31,7 @@ It is assumed that you already have a working Laravel 4 project . Basic knowledg
 		'Tournasdim\Getgravatar\GetgravatarServiceProvider'	),
 ```
 
-4. Optionally "transfer" the configuration file of this package into ***"app/config/packages"*** directory . This will give you the option to customize basic features of this package . Run  `php artisan config:publish "tournasdim/getgravatar"` and open the file ***"app/config/packages/tournasdim/getgravatar/config.php"***
+4. Optionally "transfer" the configuration file of this package into ***"app/config/packages"*** directory . This will give you the option to customize basic features of this package . Run  `php artisan config:publish "tournasdim/laravel4-getgravatar"` and open the file ***"app/config/packages/tournasdim/getgravatar/config.php"*** to customize basic functionality (size , customGravUrl , defGrav , authAdapter , maxRating) . Everything is explained  in the configuration file , drop me an issue if you need specific help though . 
 
 
 
