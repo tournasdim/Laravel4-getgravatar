@@ -65,7 +65,7 @@
  * Define which Authentication adapter is used in your current project
  * For now , three adapters are supported 'auth' , 'sentry' and "confide" 
  */
-'authAdapter' => 'sentry' , 
+'authAdapter' => 'auth' , 
 
 
 /*
