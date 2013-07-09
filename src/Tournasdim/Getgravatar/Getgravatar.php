@@ -92,8 +92,7 @@ class Getgravatar
 	public function get($size = null , $randomize = true , $email = null )
 	{	
 
-	if($email) $this->email = $this->validate('email', $email) ;
-
+	if(isset($email)) $this->email = $this->validate('email', $email) ; 
 	$querystring =  $this->generateQuery($size , $randomize ) ;
 	$urlType = \Request::secure() ? static::HTTPS_URL : static::HTTP_URL ; 
 	$url = $urlType  . $querystring ; 
@@ -123,7 +122,7 @@ class Getgravatar
 
  	extract(Config::get('getgravatar::config')) ;
  	$this->maxRating = $this->validate('rating' , strtolower($maxRating)) ;
- 	$this->size = $this->validate('size' ,  $size ) ; 
+ 	$this->size = $this->validate('int' , (int) $size ) ; 
 	$this->defGrav = $this->validate('grav' , strtolower($defGrav)) ;
 	$this->customGravUrl = $this->validate('url' , strtolower($customGravUrl)) ;
 	$this->authAdapter = $authAdapter ; 
@@ -174,14 +173,7 @@ class Getgravatar
 	protected function generateQuery($size , $randomize )
 	{
 
-	//$size = $size ?  : $this->size ;
-	if($size === 'null') 
-		{
-			$size = $this->size ;
-		}else {
-			$size = validate('size' , $size) ; 
-		}
-	echo "size from generateQuery is $size<br>" ; 
+	$size = $size ? : $this->size ;
 	$rating = $this->maxRating ; 
 	$defaultGrav = $randomize ? $this->getRandomGrav() : $this->defGrav ; 
 	$email =  $this->email ? : null ;
@@ -234,7 +226,7 @@ class Getgravatar
 	 */
 	protected function validate($type , $value)
 	{
-		echo "validation$type<br>" ; 
+
 		$validRatings = array('g' => 1 , 'pg' => 1 , 'r' => 1 , 'x' => 1 ) ;
 		$validGravs = array( 'mm' => 1 , 'identicon' => 1 , 
 			'monsterid' => 1 , 'wavatar' => 1 , 'retro' => 1 ) ; 
@@ -250,12 +242,10 @@ class Getgravatar
 			return $value ;
 
 
-			case 'size' :
-echo "size is $value<br>" ; 
+			case 'int' :
 			if(!is_int($value) && !ctype_digit($value))
 			{
-
-			throw new InvalidArgumentException('Avatar size specified must be an integer000');
+			throw new InvalidArgumentException('Avatar size specified must be an integer');
 			}
 			if($value > 512 || $value < 0)
 			{
@@ -284,10 +274,10 @@ echo "size is $value<br>" ;
 			if(!filter_var($value , FILTER_VALIDATE_EMAIL))
 			{
 			throw new InvalidArgumentException('The specified email is not valid ') ;
-			}
-			return $value ;
- 		}	
+			} 
+	 		return $value ; 
 
+ 		}	
 	}
 
 }
