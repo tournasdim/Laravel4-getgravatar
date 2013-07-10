@@ -100,17 +100,6 @@ class Getgravatar
 	
 	}
 
-	/**
-	 * Defing the Auth adapter "on the fly" . No supported yet .
-	 * @return void
-	 * 
-	 */
-	public function setAuthAdapter($adapter)
-	{
-
-	Config::set('getgravatar::authAdapter.authAdapter' , $adapter) ; 
-
-	}
 
 	/**
 	 * Reading all directives from the configuration file .
@@ -120,14 +109,13 @@ class Getgravatar
 	protected function setup()	
 	{
 
- 	extract(Config::get('getgravatar::config')) ;
+ 	extract(Config::get('laravel4-getgravatar::config')) ;
  	$this->maxRating = $this->validate('rating' , strtolower($maxRating)) ;
  	$this->size = $this->validate('int' , (int) $size ) ; 
 	$this->defGrav = $this->validate('grav' , strtolower($defGrav)) ;
 	$this->customGravUrl = $this->validate('url' , strtolower($customGravUrl)) ;
 	$this->authAdapter = $authAdapter ; 
 	$this->getEmail() ;
-
 
 	}
 
@@ -144,7 +132,7 @@ class Getgravatar
 	protected function getEmail() 
 	{
 
-	 $authAdapter = Config::get('getgravatar::authAdapter') ;
+	 $authAdapter = Config::get('laravel4-getgravatar::authAdapter') ;
 	 switch (strtolower($authAdapter))
 		{
 	case 'sentry' :
@@ -182,8 +170,9 @@ class Getgravatar
 				     's' =>  $size ,
 				     'r' => $rating ,						 
 						) ;
-	$setCustomGrav = (substr_compare($this->customGravUrl ,"http://",0,7)) === 0 ? true : false ;
+	$setCustomGrav = (substr_compare($this->customGravUrl ,"http",0,4)) === 0 ? true : false ;
 	if($setCustomGrav) $data['d'] = $this->customGravUrl ;
+
 	$queryString =  '?'. http_build_query(array_filter($data)) ;
 	$url = $this->hash($email) ; 
 	$url .= $queryString ; 

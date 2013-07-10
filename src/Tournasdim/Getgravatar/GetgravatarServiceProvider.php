@@ -18,7 +18,7 @@ class GetgravatarServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('tournasdim/getgravatar');
+		$this->package('tournasdim/laravel4-getgravatar');
 	}
 
 	/**
@@ -32,6 +32,7 @@ class GetgravatarServiceProvider extends ServiceProvider {
 	{
 		return new Getgravatar;
 	});
+
 
 // Shortcut , so devs don't need to add an Alias in config/app.php
     $this->app->booting(function()
