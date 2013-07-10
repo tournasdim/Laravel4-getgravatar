@@ -3,7 +3,7 @@
 	"type" : "library" , 
     "description": "A Laravel 4 package . Given an email address it automatically retrieves an Avatar from Gravatar's website . For logged-in users , their email address is automatically generated , through the Auth adapter Interface . Three Adapters are supported : Auth , Sentry and Confide  . ",
 	"keywords" : ["laravel" , "laravel4" , "gravatar" ] ,
-	"homepage" : "https://github.com/tournasdim/getgravatar" ,
+	"homepage" : "https://github.com/tournasdim/Laravel4-getgravatar" ,
 	"license" : "MIT" , 
     "authors": [
         {
