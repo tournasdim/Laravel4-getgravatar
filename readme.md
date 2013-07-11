@@ -33,7 +33,12 @@ It is assumed that you already have a working Laravel 4 project . Basic knowledg
 
 4. Optionally "transfer" the configuration file of this package into ***"app/config/packages"*** directory . This will give you the option to customize basic features of this package . Run  `php artisan config:publish "tournasdim/laravel4-getgravatar"` and open the file ***"app/config/packages/tournasdim/getgravatar/config.php"*** to customize basic functionality (size , customGravUrl , defGrav , authAdapter , maxRating) . Everything is explained  in the configuration file , drop me an issue if you need specific help though . 
 
-
+##Un-Installing the package :
+1. Remove this package's registration from Laravel's `composer.json` file
+2. Remove Gravatar Service Provider from config file `app/config/app.php`
+3. If step 4 of the installation process was implemented , manually remove the 
+	"tournasdim" directory from `app/config/packages` directory .
+4. Run a `composer update`  command .	
 
 ### Basic usage :
 
@@ -41,7 +46,7 @@ It is assumed that you already have a working Laravel 4 project . Basic knowledg
 * ***$size  :*** Expresed in pixels , if defined then it will overwrite the value defined into the configuration file . 
 * ***$randomize :*** This feature is enabled by default ,the Class will randomly select a name from a Pool of accepted names ('mm' , 'identicon' , 'monsterid' , 'wavatar' , 'retro') . If the email send to Gravatar's server is not recognized then this specified Avatar will be returned instead . By setting this option to the value of ***"false"*** , the value specified into the configuration file ('defGrav') will be used as parameter .
 * ***$email :*** Default is set to null . Logged-in user's email is resolved by using the current Auth's adaptor Interface . Which adapter is currently used by the application is defined into a key ("authAdapter") of the configuration file  . By specifying an email , we actualy force the Class to use this as value into the query string . This feature is handy for non registered users , we will use their specified email (on comment sections) to build our query string . 
-* Another important configuration option is made directly into the configuration file  ***"app/config/packages/tournasdim/getgravatar/config.php"*** (supposed that step 3 of the installation process was applied ). If you'd prefer to use your own default image (perhaps your logo , a funny face , whatever), then you can easily do so by supplying a custom URL to an image . Just set your prefered Url into the ***"customGravUrl"*** variable of this package's configuration file . If the email send to Gravatar's server is not recognized , an image from the  custom Url will be returned instead . Keep in mind though that the ***"size"*** attribute isn't active anymore because Gravatar's server won't crop our custom image . 
+* Another important configuration option is made directly into the configuration file  ***"app/config/packages/tournasdim/getgravatar/config.php"*** (supposed that step 3 of the installation process was applied ). If you'd prefer to use your own default fallback-image (perhaps your logo , a funny face , whatever), then you can easily do so by supplying a custom URL to an image . Just set your prefered Url into the ***"customGravUrl"*** variable of this package's configuration file . If the email send to Gravatar's server is not recognized , an image from the  custom Url will be returned instead . Keep in mind though that the ***"size"*** attribute isn't active anymore because Gravatar's server won't crop our custom image (make sure you have uploaded the right size for the custom fallback image) . 
 
 ### Practical examples :
 #### Calling an Avatar from a Route
@@ -61,7 +66,9 @@ Route::get('/' , function()
 ```
 * ***Example 2 :***
 ```javascript
-// No Email address defined , Gravatar's API will return a random image 
+/*
+* No Email address defined : For logged-in users , their email address will be send to  Gravatar's API . 
+*/ 
 Route::get('/' , function() 
 	{
 
