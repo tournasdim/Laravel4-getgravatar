@@ -29,7 +29,7 @@
  * >>>>>   Gravatar::get() <<<< returns this default size
  * >>>>>   Gravatar::get('22') << Overwrites the default value
  */
-'size' =>  '40' ,
+'size' =>  '400' ,
 
 
 /*
@@ -42,8 +42,14 @@
  * (image-link shouldn't be defined by a query-string) 
  * read more on : https://el.gravatar.com/site/implement/images/ . 
  * An example :  'http://yourserver/img/dumy.jpeg' . 
+ * Defauld value is "false" (no custom image on our server)
  * Notice : Set the URL string  into single-quotes .
- * 
+ *
+ * Use one of the following links to test 
+ * https://dl.dropboxusercontent.com/u/8941952/Gravatar-smilies/smile25.jpg
+ * https://dl.dropboxusercontent.com/u/8941952/Gravatar-smilies/smile50.jpg
+ * https://dl.dropboxusercontent.com/u/8941952/Gravatar-smilies/smile100.jpg
+ * https://dl.dropboxusercontent.com/u/8941952/Gravatar-smilies/smile200.jpg
  */
 'customGravUrl' => 'false' , 
 
