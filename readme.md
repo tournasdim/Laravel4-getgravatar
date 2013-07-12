@@ -18,6 +18,7 @@ It is assumed that you already have a working Laravel 4 project . Basic knowledg
 ```
 2. -Run a `composer update` command from your project's root  
 3. -Add the Gravatar Service Provider to your configuration file `app/config/app.php`:
+
 ```javascript
 'providers' => array(
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
