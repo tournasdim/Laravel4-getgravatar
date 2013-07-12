@@ -29,7 +29,7 @@
  * >>>>>   Gravatar::get() <<<< returns this default size
  * >>>>>   Gravatar::get('22') << Overwrites the default value
  */
-'size' =>  '400' ,
+'size' =>  '40' ,
 
 
 /*
