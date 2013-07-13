@@ -9,7 +9,7 @@ class GetgravatarServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
+	protected $defer = true;
 
 	/**
 	 * Bootstrap the application events.
@@ -41,7 +41,25 @@ class GetgravatarServiceProvider extends ServiceProvider {
     $loader->alias('Gravatar', 'Tournasdim\Getgravatar\Facades\Getgravatar');
     });
 
+     $this->registerCommand();   
+
 	}
+
+    /**
+     * Register the artisan commands.
+     *
+     * @return void
+     */
+    protected function registerCommand()
+    {
+
+   $this->app['gravatar'] = $this->app->share(function($app)
+        {
+  return new Commands\UninstallCommand;
+        });
+   		$this->commands('gravatar') ; 
+    }
+
 
 	/**
 	 * Get the services provided by the provider.
