@@ -18,7 +18,7 @@ It is assumed that you already have a working Laravel 4 project . Basic knowledg
 	}
 ```
 * 2) Run a `composer update` command from your project's root  
-* 3) Add the Gravatar Service Provider to your configuration file `app/config/app.php`:
+* 3a) Add the Gravatar Service Provider ***and an alias*** to your configuration file `app/config/app.php`:
 
 ```javascript
 'providers' => array(
@@ -30,13 +30,24 @@ It is assumed that you already have a working Laravel 4 project . Basic knowledg
 		` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` `
 		'Tournasdim\Getgravatar\GetgravatarServiceProvider'	),
 ```
+```javascript
+'aliases' => array(
+		'App'             => 'Illuminate\Support\Facades\App',
+		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
+		'Auth'            => 'Illuminate\Support\Facades\Auth',
+		'Blade'           => 'Illuminate\Support\Facades\Blade',		
+		'View'            => 'Illuminate\Support\Facades\View',
+		````		````		````		````			````		````
+		'Gravatar' => 'Tournasdim\Getgravatar\Facades\Getgravatar' , 
+```
 * 4) Optionally "transfer" the configuration file of this package into ***"app/config/packages"*** directory . This will give you the option to customize basic features of this package . Run  `php artisan config:publish "tournasdim/laravel4-getgravatar"` and open the file ***"app/config/packages/tournasdim/getgravatar/config.php"*** to customize basic functionality (size , customGravUrl , defGrav , authAdapter , maxRating) . Every option is explained  in the configuration file , drop me an issue if you need specific help though . 
 
 ##Un-Installing the package :
 1. Remove this package's registration from Laravel's `composer.json` file
 2. Remove Gravatar Service Provider from config file `app/config/app.php`
+3. Remove the alias from the config file `app/config/app.php` file
 3. If step 4 of the installation process was implemented , manually remove the 
-	"tournasdim" directory from `app/config/packages` directory .
+	"tournasdim" directory from `app/config/packages` directory . Instead of manually removing this directory , alternatively use the CLI  : `php artisan gravatar:uninstall `
 4. Run a `composer update`  command .	
 
 ### Basic usage :

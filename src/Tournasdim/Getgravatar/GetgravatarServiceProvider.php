@@ -9,7 +9,7 @@ class GetgravatarServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = true;
+	protected $defer = false ;
 
 	/**
 	 * Bootstrap the application events.
@@ -18,7 +18,10 @@ class GetgravatarServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('tournasdim/laravel4-getgravatar');
+
+	$this->package('tournasdim/laravel4-getgravatar');
+	$this->registerCommand();   
+
 	}
 
 	/**
@@ -33,16 +36,6 @@ class GetgravatarServiceProvider extends ServiceProvider {
 		return new Getgravatar;
 	});
 
-
-// Shortcut , so devs don't need to add an Alias in config/app.php
-    $this->app->booting(function()
-    {
-     $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-    $loader->alias('Gravatar', 'Tournasdim\Getgravatar\Facades\Getgravatar');
-    });
-
-     $this->registerCommand();   
-
 	}
 
     /**
@@ -53,11 +46,12 @@ class GetgravatarServiceProvider extends ServiceProvider {
     protected function registerCommand()
     {
 
-   $this->app['gravatar'] = $this->app->share(function($app)
+   	$this->app['command.gravatar'] = $this->app->share(function($app)
         {
-  return new Commands\UninstallCommand;
+  			return new Commands\UninstallCommand;
         });
-   		$this->commands('gravatar') ; 
+   	
+   	$this->commands('command.gravatar') ; 
     }
 
 
