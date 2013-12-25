@@ -1,6 +1,6 @@
 # Laravel4-Getgravatar 
 An avatar is a graphical representation of a user . It could be the person’s picture , or a random icon they want to be associated with . All a user has to do is to register an account based on their email address and upload an avatar to associate with that account . On the other side of the coin ,  webmasters that want to let their visitors graphically identify themselves have to implement a REST request to Gravatar's API . The request is just an URL encoded string with the email address of the user . If Gravatar's servers recognize this email address as a registered user , the user's associated Avatar is send back . Webmasters can also configure their system to automatically display an Identicon when a user has no registered Gravatar . 
-This library is meant to be used as a Laravel 4 package and help PHP developers be concentrated on more important parts of their Laravel project  . 
+This library is meant to be used as a Laravel 4.0 / 4.1 package and help PHP developers be concentrated on more important parts of their Laravel project  . 
 
 ### Prerequisites : 
 It is assumed that you already have a working Laravel 4 project . Basic knowledge with Laravel's concepts are also required . For instance : Route , Controller , Blade or Authentication-adapter shouldn't be "strange" words to you . 
@@ -13,7 +13,7 @@ It is assumed that you already have a working Laravel 4 project . Basic knowledg
 {	
 		"require": {
 		"laravel/framework": "4.0.*" , 
-		"tournasdim/laravel4-getgravatar": "*" 
+		"tournasdim/laravel4-getgravatar": "dev-master" 
 		}	
 	}
 ```
